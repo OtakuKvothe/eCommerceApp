@@ -32,18 +32,17 @@ const styles = StyleSheet.create({
     }
 });
 
-const ItemViewCard = () => {
+const ItemViewCard = (item, index) => {
+    console.log('In ItemsCard\n'+item);
     return (
-
         <React.Fragment>
             <View style={styles.container}>
                 <Image style={styles.image} source={require('../../static/res/react.svg')}>
                 </Image>
-                <Text style={styles.titleText}>React Logo</Text>
-                <Text style={styles.text}>₹400</Text>
+                <Text style={styles.titleText}>{item.title}</Text>
+                <Text style={styles.text}>{item.price}</Text>
             </View>
         </React.Fragment>
-
     );
 };
 
