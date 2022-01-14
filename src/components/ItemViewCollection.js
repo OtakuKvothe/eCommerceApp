@@ -44,6 +44,7 @@ class ItemViewCollection extends Component {
         const groups = this.groupItems(this.props.items, this.props.itemsPerRow);
         return (
             <FlatList
+                showsVerticalScrollIndicator={false}
                 {...this.props}
                 renderItem={this.rendergroup}
                 data={groups}
