@@ -3,19 +3,20 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import ItemViewCard from './src/components/ItemViewCard';
 import ItemViewCollection from './src/components/ItemViewCollection';
+import ItemDetailView from './src/components/ItemDetailView';
 
 export default function App() {
   return (
       <View style={styles.container}>
-        <ItemViewCollection />
+        <ItemDetailView />
       </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 100,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
