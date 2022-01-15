@@ -25,11 +25,11 @@ class ItemViewCollection extends Component {
                     loadad: true
                 });
             }).done();
-        console.log('In fetchdata\n' + this.state.dataSource);
+        //console.log('In fetchdata\n' + this.state.dataSource);
     }
 
     groupItems = (items, itemsPerRow) => {
-        console.log('In groupitems' + items);
+        //console.log('In groupitems' + items);
         let itemsGroups = [];
         let group = [];
         items.forEach((item) => {
@@ -44,7 +44,7 @@ class ItemViewCollection extends Component {
         if (group.length > 0) {
             itemsGroups.push(group);
         }
-        console.log('In ItemGroups\n' + itemsGroups);
+        //console.log('In ItemGroups\n' + itemsGroups);
         return itemsGroups;
     };
 
@@ -62,7 +62,7 @@ class ItemViewCollection extends Component {
     render = () => {
         if (this.state.loadad === true) {
             const groups = this.groupItems(this.state.dataSource, CARDS_PER_ROW);
-            console.log('Groups\n' + groups);
+            //console.log('Groups\n' + groups);
             return (
                 <FlatList
                     showsVerticalScrollIndicator={false}
