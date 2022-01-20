@@ -3,11 +3,7 @@ import { Image, Text, Button, ScrollView, View, StyleSheet, Dimensions } from 'r
 
 const { width: viewportWidth } = Dimensions.get('window');
 
-class ItemDetailView extends Component {
-
-    constructor(props) {
-        super(props)
-    }
+const ItemDetailView = () => {
 
     render = () => {
         return (

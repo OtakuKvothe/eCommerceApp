@@ -11,7 +11,10 @@ class ItemViewCollection extends Component {
         this.state = {
             dataSource: null,
             loadad: false
-        }
+        }       
+    }
+
+    componentDidMount(){
         this.fetchData();
     }
 

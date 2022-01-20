@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet, Text } from 'react-native';
+import { Image, View, StyleSheet, Text, Pressable } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,14 +34,14 @@ const styles = StyleSheet.create({
 
 const ItemViewCard = (item, index) => {
     return (
-        <React.Fragment>
+        <Pressable>
             <View style={styles.container}>
                 <Image style={styles.image} source={{uri: item.item.image}}>
                 </Image>
                 <Text style={styles.titleText}>{item.item.title}</Text>
                 <Text style={styles.text}>$ {item.item.price}</Text>
             </View>
-        </React.Fragment>
+        </Pressable>
     );
 };
 
