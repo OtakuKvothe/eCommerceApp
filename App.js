@@ -6,14 +6,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
 
-import ItemViewCollection from './src/components/ItemViewCollection';
-import ItemDetailView from './src/components/ItemDetailView';
 import HomeTab from './src/tabs/HomeTab';
+import { ContextProvider } from './Context';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <ContextProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -26,6 +26,7 @@ export default function App() {
           <Tab.Screen name='Home' options={{ headerShown: false }} component={HomeTab} />
         </Tab.Navigator>
       </NavigationContainer>
+    </ContextProvider>
   );
 }
 

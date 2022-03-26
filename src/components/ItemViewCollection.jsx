@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { FlatList, StyleSheet, View, Text } from 'react-native';
 import ItemViewCard from './ItemViewCard';
 
 var CARDS_PER_ROW = 2;
