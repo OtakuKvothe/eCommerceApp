@@ -8,16 +8,7 @@ function CartTab({ navigation }) {
 
     let data = getCart();
 
-    const renderItems = (data) => {
-        let items = [];
-        data.forEach((item) => {
-            items.push(renderItem(item));
-        });
-
-        return items;
-    }
-
-    const renderItem = ({item}) => (
+    const renderItem = ({ item }) => (
         <TouchableOpacity>
             <ListItem bottomDivider>
                 <Avatar source={{ uri: item.image }} />
@@ -30,11 +21,11 @@ function CartTab({ navigation }) {
     );
 
     return (
-            <FlatList
-                renderItem={renderItem}
-                data={data}
-                keyExtractor={(item, index) => index.toString()}
-            />
+        <FlatList
+            renderItem={renderItem}
+            data={data}
+            keyExtractor={(item, index) => index.toString()}
+        />
     );
 }
 
