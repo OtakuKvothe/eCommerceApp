@@ -11,6 +11,11 @@ const ContextProvider = ({ children }) => {
         console.log(cartItems.length);
     };
 
+    const removeItem = (item) => {
+        let title = item.title;
+        setCartItems(cartItems.filter((item) => item.title !== title));
+    }
+
     const emptyCart = () => {
         setCartItems([]);
     };
@@ -22,6 +27,7 @@ const ContextProvider = ({ children }) => {
     return (
         <Context.Provider value={{
             addItem,
+            removeItem,
             emptyCart,
             getCart
         }}

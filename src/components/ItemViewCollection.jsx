@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, View, Text } from 'react-native';
+import { FlatList, StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import ItemViewCard from './ItemViewCard';
 
 var CARDS_PER_ROW = 2;
@@ -46,7 +46,7 @@ function ItemViewCollection({ navigation }) {
         return itemsGroups;
     };
 
-    let rendergroup = ({ item }) => {
+    let renderGroup = ({ item }) => {
         const items = item.map((item, index) => {
             return renderItem(item, index);
         });
@@ -67,7 +67,7 @@ function ItemViewCollection({ navigation }) {
         return (
             <FlatList
                 showsVerticalScrollIndicator={false}
-                renderItem={rendergroup}
+                renderItem={renderGroup}
                 data={groups}
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -75,7 +75,9 @@ function ItemViewCollection({ navigation }) {
     }
     else {
         return (
-            <Text>Data Loading</Text>
+            <View style={styles.container}>
+                <ActivityIndicator size='large' color='blue' />
+            </View>
         );
     }  
 }
@@ -86,6 +88,11 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
