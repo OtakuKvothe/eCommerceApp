@@ -3,20 +3,21 @@ import { Image, Text, Button, ScrollView, View, StyleSheet, Dimensions } from 'r
 
 const { width: viewportWidth } = Dimensions.get('window');
 
-const ItemDetailView = () => {
+const ItemDetailView = ({ route }) => {
 
-    render = () => {
-        return (
-            <ScrollView>
-                <View>
-                    <Image style={styles.image} source={require('../../static/res/react.svg')}></Image>
-                </View>
-                <Text>Item Name</Text>
-                <Text>Item Price</Text>
-                <Button title='Add Item To Cart'></Button>
-            </ScrollView>
-        )
-    }
+    let item = route.params.item;
+    console.log(item);
+
+    return (
+        <ScrollView>
+            <View>
+                <Image style={styles.image} source={{ uri: item.image }}></Image>
+            </View>
+            <Text>{item.title}</Text>
+            <Text>{item.price}</Text>
+            <Button title='Add Item To Cart'></Button>
+        </ScrollView>
+    );
 }
 
 export default ItemDetailView;

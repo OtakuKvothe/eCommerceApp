@@ -1,37 +1,32 @@
-import React, { Component } from 'react';
-import { AppRegistry, FlatList, StyleSheet, View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import ItemViewCard from './ItemViewCard';
 
 var CARDS_PER_ROW = 2;
 
-class ItemViewCollection extends Component {
+function ItemViewCollection({ navigation }) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            dataSource: null,
-            loadad: false
-        }       
-    }
+    const [dataSource, setDataSource] = useState(null);
+    const [loaded, setLoaded] = useState(false);
 
-    componentDidMount(){
-        this.fetchData();
-    }
+    const onPress = ( item ) => {
+        navigation.navigate('Detail', {
+            item: item
+        });
+    };
 
-    fetchData() {
+    useEffect(() => {
         fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
-            //.then(json=>console.log(json))
             .then((responseData) => {
-                this.setState({
-                    dataSource: responseData,
-                    loadad: true
-                });
+                setDataSource(responseData);
+                setLoaded(true);
             }).done();
-        //console.log('In fetchdata\n' + this.state.dataSource);
-    }
+    }, []);
 
-    groupItems = (items, itemsPerRow) => {
+    //console.log(dataSource);
+
+    let groupItems = (items, itemsPerRow) => {
         //console.log('In groupitems' + items);
         let itemsGroups = [];
         let group = [];
@@ -51,9 +46,9 @@ class ItemViewCollection extends Component {
         return itemsGroups;
     };
 
-    rendergroup = ({ item }) => {
+    let rendergroup = ({ item }) => {
         const items = item.map((item, index) => {
-            return this.renderItem(item, index);
+            return renderItem(item, index);
         });
         return (
             <View style={styles.group}>
@@ -62,30 +57,27 @@ class ItemViewCollection extends Component {
         );
     };
 
-    render = () => {
-        if (this.state.loadad === true) {
-            const groups = this.groupItems(this.state.dataSource, CARDS_PER_ROW);
-            //console.log('Groups\n' + groups);
-            return (
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    {...this.props}
-                    renderItem={this.rendergroup}
-                    data={groups}
-                    keyExtractor={(item, index) => index.toString()}
-                />
-            );
-        }
-        else {
-            return (
-                <Text>Data Loading</Text>
-            )
-        }
-    };
-
-    renderItem(item, index) {
-        return <ItemViewCard item={item} index={index} key={index} />
+    let renderItem = (item, index) => {
+        return <ItemViewCard item={item} onPress={onPress} key={index} />
     }
+
+    if (loaded === true) {
+        const groups = groupItems(dataSource, CARDS_PER_ROW);
+        //console.log('Groups\n' + groups);
+        return (
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                renderItem={rendergroup}
+                data={groups}
+                keyExtractor={(item, index) => index.toString()}
+            />
+        );
+    }
+    else {
+        return (
+            <Text>Data Loading</Text>
+        );
+    }  
 }
 
 var styles = StyleSheet.create({

@@ -1,9 +1,22 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text, Pressable } from 'react-native';
 
+const ItemViewCard = ({ item, onPress }) => {
+    return (
+        <Pressable onPress={() => onPress(item)}>
+            <View style={styles.container}>
+                <Image style={styles.image} source={{uri: item.image}}>
+                </Image>
+                <Text style={styles.titleText}>{item.title}</Text>
+                <Text style={styles.text}>$ {item.price}</Text>
+            </View>
+        </Pressable>
+    );
+};
+
 const styles = StyleSheet.create({
     container: {
-        width: 180,
+        width: 160,
         height: 250,
         elevation: 5,
         paddingLeft: 10,
@@ -18,31 +31,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     titleText: {
-        fontSize: 16
+        fontSize: 16,
     },
     text: {
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: 'bold'
     },
     image: {
-        width: 160,
-        height: 160,
+        width: 140,
+        height: 140,
         borderColor: "#000000",
         borderWidth: 2,
         borderRadius: 5
     }
 });
-
-const ItemViewCard = (item, index) => {
-    return (
-        <Pressable>
-            <View style={styles.container}>
-                <Image style={styles.image} source={{uri: item.item.image}}>
-                </Image>
-                <Text style={styles.titleText}>{item.item.title}</Text>
-                <Text style={styles.text}>$ {item.item.price}</Text>
-            </View>
-        </Pressable>
-    );
-};
 
 export default ItemViewCard;
