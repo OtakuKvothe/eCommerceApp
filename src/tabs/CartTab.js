@@ -8,6 +8,15 @@ function CartTab({ navigation }) {
 
     let data = getCart();
 
+    const getTotal = () => {
+        let total = 0;
+        data.forEach(item => {
+            total += item.price * 100;
+        });
+
+        return total;
+    }
+
     const renderItem = ({ item }) => (
         <TouchableOpacity>
             <ListItem bottomDivider>
@@ -27,7 +36,7 @@ function CartTab({ navigation }) {
             data={data}
             keyExtractor={(item, index) => index.toString()}
         />
-        <Button title='Checkout' style={styles.button} onPress={() => emptyCart()}></Button>
+        <Button title='Checkout' style={styles.button} onPress={() => emptyCart()}>₹ {getTotal()}</Button>
         </View>
         
     );
