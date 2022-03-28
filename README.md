@@ -19,7 +19,7 @@ Clone this repo
 
 ```
 $ git clone https://github.com/OtakuKvothe/eCommerceApp.git
-$ cd movies-app
+$ cd eCommerceApp
 ```
 
 Install dependencies
